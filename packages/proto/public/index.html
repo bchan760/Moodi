@@ -5,37 +5,59 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Moodi</title>
+    <!-- Google Fonts-->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300&family=Noto+Sans&display=swap" rel="stylesheet">    
+    <!-- Custom CSS -->
+    <link type="text/css" rel="stylesheet" href="/styles/page.css" />
 </head>
 
 <body>
     <header>
-        <h1>Welcome to Moodi</h1>
+        <h1 class="title">Welcome to Moodi</h1>
+        <svg class="icon">
+            <use href="/icons/mood.svg#icon-mood" />
+        </svg>
+        <nav>
+            <a href="about.html">
+                <span class="padding">About</span>
+            </a>
+        </nav>
     </header>
-
-    <nav>
-        <ul>
-            <li><a href="about.html">About</a></li>
-        </ul>
-    </nav>
 
     <section>
         <h2>How are you feeling?</h2>
         <form action="suggest.html" method="get">
-            <label for="userInput">I'm feeling...</label>
             <input type="text" id="userInput" name="userInput" placeholder="Type how you're feeling here">
-            <button type="submit">Submit</button>
+            <button type="submit" id="submit">Submit</button>
         </form>
 
-        <h2>Here's some song suggestions for today!</h2>
+        <h2>Here's some popular song suggestions for today!</h2>
         <ul>
-            <li><a href="platform.html">Popular Song 1</a></li>
-            <li><a href="platform.html">Popular Song 2</a></li>
-            <li><a href="platform.html">Popular Song 3</a></li>
+            <li>
+                <a href="platform.html">
+                    <img class="fixed-size" src="/images/circles_post_malone.jpg">
+                    <span>Circles by Post Malone</span>
+                </a>
+            </li>
+            <li>
+                <a href="platform.html">
+                    <img class="fixed-size" src="/images/die_for_you_the_weeknd.jpg">
+                    <span>Die for You by The Weeknd</span>
+                </a>
+            </li>
+            <li>
+                <a href="platform.html">
+                    <img class="fixed-size" src="/images/one_dance_drake.jpg">
+                    <span>One Dance by Drake</span>
+                </a>
+            </li>
         </ul>
     </section>
 
     <footer>
-        <p>Contact me at bchan36@calpoly.edu for inquiries.</p>
+        <p id="contact">Contact me at bchan36@calpoly.edu for inquiries.</p>
     </footer>
 
 </body>
