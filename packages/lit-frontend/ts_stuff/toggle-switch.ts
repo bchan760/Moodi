@@ -23,7 +23,7 @@ export class ToggleSwitchElement extends LitElement {
       display: flex;
       width: 100%;
       justify-content: space-between;
-      align-items: center;
+      align-items: right;
       gap: var(--size-spacing-medium);
       line-height: 2em;
       cursor: pointer;

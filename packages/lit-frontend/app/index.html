@@ -19,7 +19,7 @@
 </head>
 
 <body>
-    <header class="header-container">
+    <header>
         <h1 class="title">Welcome to Moodi</h1>
         <svg class="icon">
             <use href="/icons/mood.svg#icon-mood" />
@@ -29,11 +29,10 @@
                 <span class="padding">About</span>
             </a>
         </nav>
-        <drop-down>
+        <drop-down align="right">
             User Profile
-            <user-panel slot="menu"> <!-- add avatar="/data/avatars/Blaze Pasquale.png"-->
-                <span slot="name">Blaze Pasquale</span>
-              <span slot="name">Blaze Pasquale</span>
+            <user-panel slot="menu" avatar="/assets/avatars/young_me.png"> <!-- add avatar="/data/avatars/Blaze Pasquale.png"-->
+                <span slot="name">Bill Chan</span>
             </user-panel>
         </drop-down>
     </header>

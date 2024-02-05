@@ -16,18 +16,11 @@ export class UserPanelElement extends LitElement {
           <h1><slot name="name">Your Name</slot></h1>
         </li>
         <li>
+          <div class="dark-mode-wrapper">
           <toggle-switch @change=${this._toggleDarkMode}>
             Dark Mode
           </toggle-switch>
-        </li>
-        <li>
-          <preset-buttons
-            name="font-size"
-            .options=${[12, 14, 16, 20, 24]}
-            value="16"
-            @change=${this._selectFontSize}>
-            Font Size
-          </preset-buttons>
+          </div>
         </li>
         <slot></slot>
         <li>
@@ -36,7 +29,16 @@ export class UserPanelElement extends LitElement {
       </ul>
     `;
   }
-
+  /*<li> //this code is meant to be added to the slot in the above code
+          <preset-buttons
+            name="font-size"
+            .options=${[12, 14, 16, 20, 24]}
+            value="16"
+            @change=${this._selectFontSize}>
+            Font Size
+          </preset-buttons>
+        </li> 
+  */
   static styles = css`
     * {
       margin: 0;
@@ -62,7 +64,7 @@ export class UserPanelElement extends LitElement {
     li.header {
       display: flex;
       flex-wrap: nowrap;
-      align-items: end;
+      align-items: right;
       line-height: var(--font-line-height-display);
     }
     li:first-child {
@@ -73,13 +75,17 @@ export class UserPanelElement extends LitElement {
     }
     img {
       display: inline;
-      height: var(--size-icon-large);
+      width: 50px;
+      height: 50px;
+      object-fit: cover;
+      border-radius: 50%;
+      margin-right: 10px; /* spacing between image and text */
     }
     h1 {
       font-size: var(--size-type-mlarge);
       line-height: var(--font-line-height-display);
       white-space: normal;
-      text-align: right;
+      text-align: left;
     }
   `;
 
