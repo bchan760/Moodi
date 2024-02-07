@@ -3,14 +3,17 @@ import { customElement, property } from "lit/decorators.js";
 
 @customElement("song-item")
 export class SongItemElement extends LitElement {
-    @property({ reflect: true, type: Boolean })
+    @property({ type: String })
+    href ="platform.html";
 
     render() {
         return html`
             <li class="song-item">
-                <a href="@change=${this._handleInput}">
-                    <img class="image" src="#">
-                    <span class="title"></span>
+                <a href=${this.href}>
+                    <slot name="image"></slot>
+                    <span class="title">
+                        <slot name="title"></slot>
+                    </span>
                 </a>
             </li>
         `;
@@ -43,13 +46,4 @@ export class SongItemElement extends LitElement {
             margin-top: 10px;
         }
     `;
-    _handleInput(ev: Event) {
-        const target = ev.target as HTMLInputElement;
-        const composedEvent = new Event(ev.type, {
-          bubbles: true,
-          composed: true
-        });
-    
-        this.dispatchEvent(composedEvent);
-      }
 }
