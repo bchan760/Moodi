@@ -8,7 +8,7 @@ export class SongItemElement extends LitElement {
     render() {
         return html`
             <li class="song-item">
-                <a href="#">
+                <a href="@change=${this._handleInput}">
                     <img class="image" src="#">
                     <span class="title"></span>
                 </a>
@@ -43,4 +43,13 @@ export class SongItemElement extends LitElement {
             margin-top: 10px;
         }
     `;
+    _handleInput(ev: Event) {
+        const target = ev.target as HTMLInputElement;
+        const composedEvent = new Event(ev.type, {
+          bubbles: true,
+          composed: true
+        });
+    
+        this.dispatchEvent(composedEvent);
+      }
 }
