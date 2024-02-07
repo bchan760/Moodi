@@ -16,9 +16,10 @@
     <script type="module" src="/ts_stuff/user-panel.ts"></script>
     <script type="module" src="/ts_stuff/toggle-switch.ts"></script>
     <script type="module" src="/ts_stuff/preset-buttons.ts"></script>
+    <script type="module" src="/ts_stuff/song-item.ts"></script>
 </head>
 
-<body>
+<body class="light-mode">
     <header>
         <h1 class="title">Welcome to Moodi</h1>
         <svg class="icon">
@@ -46,12 +47,10 @@
 
         <h2>Here's some popular song suggestions for today!</h2>
         <ul>
-            <li>
-                <a href="platform.html">
-                    <img class="fixed-size" src="/images/circles_post_malone.jpg">
-                    <span>Circles by Post Malone</span>
-                </a>
-            </li>
+            <song-item>
+                <img slot="image" src="/images/circles_post_malone.jpg">
+                <span slot="title">Circles by Post Malone</span>
+            </song-item>
             <li>
                 <a href="platform.html">
                     <img class="fixed-size" src="/images/die_for_you_the_weeknd.jpg">

@@ -1,9 +1,34 @@
+:root {
+    --color-background-page-light: #fff;
+    --color-background-page-dark: #121212;
+    --color-text-light: #121212;
+    --color-text-dark: #fff;
+}
+
 body {
     font-family: 'Inter', 'Noto Sans';
     line-height: 1.6;
-    background-color: #292323;
-    color: #fff; /* White text */
+    background-color: var(--color-background-page-light);
+    color: var(--color-text-light);
     margin: 0;
+}
+
+body.dark-mode {
+    background-color: var(--color-background-page-dark);
+    color: var(--color-text-dark);
+}
+
+body.light-mode {
+    background-color: var(--color-background-page-light);
+    color: var(--color-text-light);
+}
+
+body.light-mode ul li a {
+    color: var(--color-text-light); /* Set link text color to light mode */
+}
+
+body.dark-mode ul li a {
+    color: var(--color-text-dark); /* Set link text color to dark mode */
 }
 
 header {
@@ -66,8 +91,6 @@ span {
     margin-top: 10px;
 }
 
-/* Styling for classes + id's */
-
 /* Set a fixed width/width for the images */
 img.fixed-size {
     width: 300px;
@@ -121,9 +144,13 @@ h1.title{
     left: 50%;
     transform: translateX(-50%);
     padding: 10px; 
-    color: #fff; 
+    color: var(--color-text-light);
     cursor: pointer; 
     text-align: center;
+}
+
+body.dark-mode #contact {
+    color: var(--color-text-dark); /* Adjust for dark mode */
 }
 
 

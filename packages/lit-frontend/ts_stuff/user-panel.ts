@@ -16,11 +16,9 @@ export class UserPanelElement extends LitElement {
           <h1><slot name="name">Your Name</slot></h1>
         </li>
         <li>
-          <div class="dark-mode-wrapper">
           <toggle-switch @change=${this._toggleDarkMode}>
             Dark Mode
           </toggle-switch>
-          </div>
         </li>
         <slot></slot>
         <li>
@@ -95,8 +93,13 @@ export class UserPanelElement extends LitElement {
 
     console.log("Toggling Dark mode", ev);
 
-    if (target?.on) body.classList.add("dark-mode");
-    else body.classList.remove("dark-mode");
+    if (target?.on) {
+      body.classList.add("dark-mode");
+      body.classList.remove("light-mode");
+    } else {
+      body.classList.remove("dark-mode");
+      body.classList.add("light-mode");
+    }
   }
 
   _selectFontSize(ev: InputEvent) {
