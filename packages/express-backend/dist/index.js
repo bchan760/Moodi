@@ -40,6 +40,10 @@ app.get("/api/profiles/:userid", (req, res) => {
   const { userid } = req.params;
   import_profiles.default.get(userid).then((profile) => res.json(profile)).catch((err) => res.status(404).end());
 });
+app.post("/api/profiles", (req, res) => {
+  const newProfile = req.body;
+  import_profiles.default.create(newProfile).then((profile) => res.status(201).send(profile)).catch((err) => res.status(500).send(err));
+});
 app.listen(port, () => {
   console.log(`Server running at http://localhost:${port}`);
 });
