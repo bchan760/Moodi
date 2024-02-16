@@ -1,0 +1,162 @@
+:root {
+    --color-background-page-light: #fff;
+    --color-background-page-dark: #121212;
+    --color-text-light: #121212;
+    --color-text-dark: #fff;
+}
+
+body {
+    font-family: 'Inter', 'Noto Sans';
+    line-height: 1.6;
+    background-color: var(--color-background-page-light);
+    color: var(--color-text-light);
+    margin: 0;
+}
+
+body.dark-mode {
+    background-color: var(--color-background-page-dark);
+    color: var(--color-text-dark);
+}
+
+body.light-mode {
+    background-color: var(--color-background-page-light);
+    color: var(--color-text-light);
+}
+
+body.light-mode ul li a {
+    color: var(--color-text-light); /* Set link text color to light mode */
+}
+
+body.dark-mode ul li a {
+    color: var(--color-text-dark); /* Set link text color to dark mode */
+}
+
+header {
+    /* display: flex; */
+    background-color: rgb(9, 205, 205);
+    color: #fff;
+    padding: 5px;
+    font-size: 24px;
+    text-align: center; /* Center the text within the header */
+}
+
+section {
+    padding: 20px;
+}
+
+ul {
+    display: flex; /*suggests that the list items are displayed in a row */
+    justify-content: center; /* Center items horizontally */
+    text-align: center;
+}
+
+li {
+    display: inline-block;
+    margin-right: 100px; /* Add space between the list items */
+    font-size: 18px;
+    color: #fff; /* White text */
+    list-style: none; /* Remove default list styling */
+}
+
+a {
+    color: #fff; /* Set link text color to white */
+    text-decoration: none; /* Remove default underline styling */
+}
+
+form {
+    text-align: center;
+    font-size: 30%;
+    width: 100%;
+    padding: 20px;
+    color: #fff; /* White text */
+}
+
+h2 {
+    text-align: center; /* Center the text */
+    font-size: 24px;
+    margin-bottom: 5px;
+}
+
+img {
+    width: 100%; /* Initially, images take up full width */
+    max-width: 100%; /* Ensure images don't exceed their container */
+    height: auto; /* Maintain aspect ratio */
+    display: inline-block;
+    vertical-align: top;
+}
+
+span {
+    display: block;
+    text-align: center;
+    margin-top: 10px;
+}
+
+/* Set a fixed width/width for the images */
+img.fixed-size {
+    width: 300px;
+    height: 300px; 
+}
+
+span.padding{
+    padding-top: 5px;
+}
+
+svg.icon {
+    /* display: inline; */
+    height: 2em;
+    width: 2em;
+    /* vertical-align: top; */
+    fill: #fff;
+    margin-left: auto;
+}
+
+.title {
+    text-align: center;
+    font-size: 55px;
+    margin-bottom: 5px;
+}
+
+h1.title{
+    margin-right: 10px;
+}
+
+#userInput {
+    width: 80%; /* Adjust the width as needed */
+    padding: 10px; /* Add padding for better visual appearance */
+    margin: 10px 0; /* Add margin for spacing */
+    vertical-align: top; 
+}
+
+#submit {
+    padding: 9px 20px; 
+    margin: 10px 0;
+    background-color: rgb(9, 205, 205); 
+    color: white; 
+    border: none; 
+    cursor: pointer;
+    vertical-align: top; 
+    font-size: 18px;
+}
+
+#contact {
+    position: fixed;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    padding: 10px; 
+    color: var(--color-text-light);
+    cursor: pointer; 
+    text-align: center;
+}
+
+body.dark-mode #contact {
+    color: var(--color-text-dark); /* Adjust for dark mode */
+}
+
+
+drop-down {
+    position: fixed;
+    top: 10px; /* Adjust the top position as needed */
+    right: 10px; /* Adjust the right position as needed */
+    z-index: 999; /* Ensure it appears above other elements */
+}
