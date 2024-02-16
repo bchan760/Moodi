@@ -15,10 +15,20 @@ function get(userid: String): Promise<Profile> {
     });
 }
 
+function update(userid: String, profile: Profile): Promise<Profile> {
+  return new Promise((resolve, reject) => {
+    ProfileModel.findOneAndUpdate({ userid }, profile, {
+      new: true,
+    }).then((profile) => {
+      if (profile) resolve(profile);
+      else reject("Failed to update profile");
+    });
+  });
+}
 
 function create(profile: Profile): Promise<Profile> {
   const p = new ProfileModel(profile);
   return p.save();
 }
 
-export default { index, get, create };
+export default { index, get, create, update };

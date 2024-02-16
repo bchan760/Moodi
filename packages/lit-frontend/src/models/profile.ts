@@ -7,7 +7,7 @@ export interface Profile {
     },
     liked_songs: string[],
     num_liked_songs: number,
-    avatar: {
+    avatar: string | { /*accepts data url or the data/contentType */
         data: Buffer,
         contentType: String
     },

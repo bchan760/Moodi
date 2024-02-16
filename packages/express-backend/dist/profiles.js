@@ -41,8 +41,20 @@ function get(userid) {
     throw `${userid} Not Found`;
   });
 }
+function update(userid, profile) {
+  return new Promise((resolve, reject) => {
+    import_profile2.default.findOneAndUpdate({ userid }, profile, {
+      new: true
+    }).then((profile2) => {
+      if (profile2)
+        resolve(profile2);
+      else
+        reject("Failed to update profile");
+    });
+  });
+}
 function create(profile) {
   const p = new import_profile2.default(profile);
   return p.save();
 }
-var profiles_default = { index, get, create };
+var profiles_default = { index, get, create, update };

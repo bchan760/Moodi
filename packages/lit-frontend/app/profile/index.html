@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Moodi</title>
+    <!-- Google Fonts-->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300&family=Noto+Sans&display=swap" rel="stylesheet">    
+    <!-- Custom CSS -->
+    <link type="text/css" rel="stylesheet" href="/styles/page.css" />
+    <link type="text/css" rel="stylesheet" href="/styles/layout.css" />
+    <script type="module" src="/ts_stuff/drop-down.ts"></script>
+    <script type="module" src="/ts_stuff/user-panel.ts"></script>
+    <script type="module" src="/ts_stuff/toggle-switch.ts"></script>
+    <script type="module" src="/ts_stuff/preset-buttons.ts"></script>
+    <script type="module" src="/ts_stuff/song-item.ts"></script>
+</head>
+
+<body class="light-mode">
+    <header>
+        <!-- not sure exactly what to do with this yet -->
+        <user-profile path="/profiles/..."></user-profile>
+        <h1 class="title">Welcome to Moodi</h1>
+        <svg class="icon">
+            <use href="/icons/mood.svg#icon-mood" />
+        </svg>
+        <nav>
+            <a href="about.html">
+                <span class="padding">About</span>
+            </a>
+        </nav>
+        <drop-down align="right">
+            User Profile
+            <user-panel slot="menu" avatar="/assets/avatars/young_me.png"> <!-- add avatar="/data/avatars/Blaze Pasquale.png"-->
+                <span slot="name">Bill Chan</span>
+            </user-panel>
+        </drop-down>
+    </header>
+</body>
+
+</html>
