@@ -16,31 +16,24 @@ export class DropDownElement extends LitElement {
         : "--position-left: auto; --position-right: 0;";
 
     return html`
-      <input
-        type="checkbox"
+      <input type="checkbox"
         id="is-shown"
         @change=${this._handleChange}
         .checked=${this.open} />
       <label for="is-shown">
-        <slot>Menu</slot>
+        <slot name="icon"></slot>
       </label>
-      <slot name="menu" style=${menuStyle}>
-        <ul>
-          <li>Command 1</li>
-          <li>Command 2</li>
-          <li>Command 3</li>
-        </ul>
-      </slot>
+      <slot name="menu" style=${menuStyle}></slot>
     `;
   }
 
   static styles = css`
     :host {
-      --position-left: 0;
-      --position-right: auto;
-
       display: inline-block;
-      position: relative;
+      position: fixed;
+      top: 0;
+      left: 0; /* Position the component to the left */
+      z-index: 999; /* Ensure it's above other content */
     }
 
     #is-shown {
@@ -55,15 +48,12 @@ export class DropDownElement extends LitElement {
       display: none;
       position: absolute;
       top: 100%;
-      left: var(--position-left);
-      right: var(--position-right);
+      left: 0; /* Align the menu to the left */
     }
 
     #is-shown:checked ~ slot[name="menu"] {
       display: block;
     }
-
-    /* CSS for slotted elements and default slot content */
 
     ::slotted(ul[slot="menu"]),
     slot[name="menu"] > ul {

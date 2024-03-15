@@ -20,5 +20,5 @@
         "noUnusedParameters": true,
         "noFallthroughCasesInSwitch": true
     },
-    "include": ["src", "ts_stuff"]
+    "include": ["src", "ts_stuff", "src/rest.ts"]
 }

@@ -4,40 +4,40 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Moodi</title>
     <link type="text/css" rel="stylesheet" href="/styles/page.css" />
+    <script type="module" src="../components/drop-down.ts"></script>
+    <script type="module" src="../components/side-panel.ts"></script>
+    <script type="module" src="../components/toggle-switch.ts"></script>
+    <script type="module" src="../components/preset-buttons.ts"></script>
+    <script type="module" src="../components/song-item.ts"></script>
+    <script type="module" src="../components/song-container.ts"></script>
+    <script type="module" src="../components/header/user-panel.ts"></script>
+    <script type="module" src="../components/header/user-dropdown.ts"></script>
+    <script type="module" src="../components/header/title-comp.ts"></script>
 </head>
 
 <body>
     <header>
-        <h1>Community Song Suggestions</h1>
-        <a href="index.html">Go Back</a>
+        <title-comp></title-comp>
+        <drop-down align="left">
+            <svg class="icon" slot="icon">
+                <use href="/icons/hamburger.svg#icon-hamburger" />
+            </svg>
+            <side-panel slot="menu"></side-panel>
+        </drop-down>
+        <user-profile-dropdown align="right">
+            <span slot="username">Hello user</span>
+            <user-profile-panel slot="menu"></user-profile-panel>
+        </user-profile-dropdown>
     </header>
 
     <section>
         <h2>Try these songs!</h2>
-        <nav>
-            <ul>
-                <li>
-                    <a href="platform.html">
-                        <img class="fixed-size" src="/images/circles_post_malone.jpg">
-                        <span>Circles by Post Malone</span>
-                    </a>
-                </li>
-                <li>
-                    <a href="platform.html">
-                        <img class="fixed-size" src="/images/die_for_you_the_weeknd.jpg">
-                        <span>Die for You by The Weeknd</span>
-                    </a>
-                </li>
-                <li>
-                    <a href="platform.html">
-                        <img class="fixed-size" src="/images/one_dance_drake.jpg">
-                        <span>One Dance by Drake</span>
-                    </a>
-                </li>
-            </ul>
-        </nav>
+        <song-container>
+            <song-item href="platform.html" src="/images/circles_post_malone.jpg" title="Circles by Post Malone"></song-item>
+            <song-item href="platform.html" src="/images/die_for_you_the_weeknd.jpg" title="Die for You by The Weeknd"></song-item>
+            <song-item href="platform.html" src="/images/one_dance_drake.jpg" title="One Dance by Drake"></song-item>
+        </song-container>   
     </section>
 
     <footer>

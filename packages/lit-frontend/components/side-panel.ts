@@ -3,41 +3,57 @@ import { customElement, property } from "lit/decorators.js";
 import { ToggleSwitchElement } from "./toggle-switch";
 import { PresetButtonsElement } from "./preset-buttons";
 
-@customElement("user-panel")
+@customElement("side-panel")
 export class UserPanelElement extends LitElement {
   @property()
   avatar: string = "";
 
+  @property({ type: String })
+  selectedMenuItem: string = "";
+
+  connectedCallback() {
+    super.connectedCallback();
+    this.applyDarkModePreference();
+  }
+
+  applyDarkModePreference() {
+    const darkModeEnabled = localStorage.getItem("darkModeEnabled") === "true";
+    const body = document.body;
+    if (darkModeEnabled) {
+      body.classList.add("dark-mode");
+    } else {
+      body.classList.remove("dark-mode");
+    }
+  }
+
   render() {
     return html`
       <ul>
-        <li class="header">
-          <img src=${this.avatar} />
-          <h1><slot name="name">Your Name</slot></h1>
-        </li>
         <li>
-          <toggle-switch @change=${this._toggleDarkMode}>
-            Dark Mode
-          </toggle-switch>
+          <slot name="about">About Moodi</slot>
+        </li>
+        <li class="${this.selectedMenuItem === 'dark-mode' ? 'selected' : ''}">
+          <toggle-switch @change=${this._toggleDarkMode}>Dark Mode</toggle-switch>
         </li>
         <slot></slot>
         <li>
-          <slot name="logout">Sign out&hellip;</slot>
+          <slot name="logout">Sign out</slot>
         </li>
       </ul>
     `;
   }
-  /*<li> //this code is meant to be added to the slot in the above code
-          <preset-buttons
-            name="font-size"
-            .options=${[12, 14, 16, 20, 24]}
-            value="16"
-            @change=${this._selectFontSize}>
-            Font Size
-          </preset-buttons>
-        </li> 
-  */
   static styles = css`
+    :host {
+      display: inline-block;
+      position: fixed;
+      padding-left: 20px;
+      z-index: 999; /* Ensure it's above other content */
+      background-color: #ffd700;
+      border-radius: 10px;
+      box-shadow: 8px 0px 8px rgba(0, 0, 0, 0.2); /* Add a raised effect to the right border */
+      width: 15%;
+      height: 100%;
+    }
     * {
       margin: 0;
       box-sizing: border-box;
@@ -85,6 +101,9 @@ export class UserPanelElement extends LitElement {
       white-space: normal;
       text-align: left;
     }
+    .selected {
+      border: 2px solid red; /* Define your highlighted border style */
+    }
   `;
 
   _toggleDarkMode(ev: InputEvent) {
@@ -95,10 +114,10 @@ export class UserPanelElement extends LitElement {
 
     if (target?.on) {
       body.classList.add("dark-mode");
-      body.classList.remove("light-mode");
+      localStorage.setItem("darkModeEnabled", "true"); // Store dark mode preference
     } else {
       body.classList.remove("dark-mode");
-      body.classList.add("light-mode");
+      localStorage.setItem("darkModeEnabled", "false"); // Store dark mode preference
     }
   }
 

@@ -1,8 +1,17 @@
 :root {
-    --color-background-page-light: #fff;
+    --color-background-page-light: #FCFBF4;
     --color-background-page-dark: #121212;
     --color-text-light: #121212;
-    --color-text-dark: #fff;
+    --color-text-dark: #ffffff;
+    --color-line: #121212;
+}
+
+header {
+    display: flex;
+    align-items: center;
+    background-color: #ffd700;
+    padding: 0 20px;
+    position: relative;
 }
 
 body {
@@ -29,15 +38,6 @@ body.light-mode ul li a {
 
 body.dark-mode ul li a {
     color: var(--color-text-dark); /* Set link text color to dark mode */
-}
-
-header {
-    /* display: flex; */
-    background-color: rgb(9, 205, 205);
-    color: #fff;
-    padding: 5px;
-    font-size: 24px;
-    text-align: center; /* Center the text within the header */
 }
 
 section {
@@ -77,24 +77,10 @@ h2 {
     margin-bottom: 5px;
 }
 
-img {
-    width: 100%; /* Initially, images take up full width */
-    max-width: 100%; /* Ensure images don't exceed their container */
-    height: auto; /* Maintain aspect ratio */
-    display: inline-block;
-    vertical-align: top;
-}
-
 span {
     display: block;
     text-align: center;
     margin-top: 10px;
-}
-
-/* Set a fixed width/width for the images */
-img.fixed-size {
-    width: 300px;
-    height: 300px; 
 }
 
 span.padding{
@@ -103,34 +89,25 @@ span.padding{
 
 svg.icon {
     /* display: inline; */
-    height: 2em;
-    width: 2em;
+    height: 5em;
+    width: 5em;
     /* vertical-align: top; */
-    fill: #fff;
-    margin-left: auto;
-}
-
-.title {
-    text-align: center;
-    font-size: 55px;
-    margin-bottom: 5px;
-}
-
-h1.title{
-    margin-right: 10px;
+    fill: #FF9D72;
+    margin-left: 40px;
+    margin-top: 40px;
 }
 
 #userInput {
-    width: 80%; /* Adjust the width as needed */
-    padding: 10px; /* Add padding for better visual appearance */
-    margin: 10px 0; /* Add margin for spacing */
+    width: 80%;
+    padding: 10px;
+    margin: 10px 0;
     vertical-align: top; 
 }
 
 #submit {
     padding: 9px 20px; 
     margin: 10px 0;
-    background-color: rgb(9, 205, 205); 
+    background-color: #FF9D72; 
     color: white; 
     border: none; 
     cursor: pointer;
@@ -153,10 +130,3 @@ body.dark-mode #contact {
     color: var(--color-text-dark); /* Adjust for dark mode */
 }
 
-
-drop-down {
-    position: fixed;
-    top: 10px; /* Adjust the top position as needed */
-    right: 10px; /* Adjust the right position as needed */
-    z-index: 999; /* Ensure it appears above other elements */
-}

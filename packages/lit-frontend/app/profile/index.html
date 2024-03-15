@@ -12,11 +12,11 @@
     <!-- Custom CSS -->
     <link type="text/css" rel="stylesheet" href="/styles/page.css" />
     <link type="text/css" rel="stylesheet" href="/styles/layout.css" />
-    <script type="module" src="/ts_stuff/drop-down.ts"></script>
-    <script type="module" src="/ts_stuff/user-panel.ts"></script>
-    <script type="module" src="/ts_stuff/toggle-switch.ts"></script>
-    <script type="module" src="/ts_stuff/preset-buttons.ts"></script>
-    <script type="module" src="/ts_stuff/song-item.ts"></script>
+    <script type="module" src="/components/drop-down.ts"></script>
+    <script type="module" src="/components/user-panel.ts"></script>
+    <script type="module" src="/components/toggle-switch.ts"></script>
+    <script type="module" src="/components/preset-buttons.ts"></script>
+    <script type="module" src="/components/song-item.ts"></script>
 </head>
 
 <body class="light-mode">
@@ -34,7 +34,7 @@
         </nav>
         <drop-down align="right">
             User Profile
-            <user-panel slot="menu" avatar="/assets/avatars/young_me.png"> <!-- add avatar="/data/avatars/Blaze Pasquale.png"-->
+            <user-panel slot="menu" avatar="/assets/avatars/young_me.png">
                 <span slot="name">Bill Chan</span>
             </user-panel>
         </drop-down>
