@@ -38,7 +38,7 @@ export class AuthRequiredElement extends LitElement {
   }
 
   render() {
-    //console.log("Rendering auth-required", this.user);
+    console.log("Rendering auth-required", this.user);
 
     const dialog = html`
       <dialog ?open=${!this.isAuthenticated}>

@@ -1,12 +1,12 @@
 import jwt from "jsonwebtoken";
-const credentials = require("../dist/services/credentials.js");
+import credentials from "./services/credentials";
 
 function generateAccessToken(username: string) {
   console.log("Generating token for", username);
   return new Promise((resolve, reject) => {
     jwt.sign(
       { username: username },
-      process.env.TOKEN_SECRET || "", // Provide a non-null value for the secretOrPrivateKey parameter
+      process.env.TOKEN_SECRET || "",
       { expiresIn: "1d" },
       (error, token) => {
         if (error) reject(error);
@@ -16,7 +16,7 @@ function generateAccessToken(username: string) {
   });
 }
 
-export function registerUser(req, res) {
+export function registerUser(req: any, res: any) {
   const { username, pwd } = req.body; // from form
 
   if (!username || !pwd) {
@@ -31,7 +31,7 @@ export function registerUser(req, res) {
   }
 }
 
-export function loginUser(req, res) {
+export function loginUser(req: any, res: any) {
   const { username, pwd } = req.body; // from form
 
   if (!username || !pwd) {
@@ -39,13 +39,13 @@ export function loginUser(req, res) {
   } else {
     credentials
       .verify(username, pwd)
-      .then((goodUser: string) => generateAccessToken(goodUser))
+      .then((goodUser: any) => generateAccessToken(goodUser))
       .then((token) => res.status(200).send({ token: token }))
       .catch((error) => res.status(401).send("Unauthorized"));
   }
 }
 
-export function authenticateUser(req, res, next) {
+export function authenticateUser(req: any, res: any, next: any) {
   const authHeader = req.headers["authorization"];
   //Getting the 2nd part of the auth header (the token)
   const token = authHeader && authHeader.split(" ")[1];
@@ -55,8 +55,8 @@ export function authenticateUser(req, res, next) {
   } else {
     jwt.verify(
       token,
-      process.env.TOKEN_SECRET,
-      (error, decoded) => {
+      process.env.TOKEN_SECRET || "",
+      (error: any, decoded: any) => {
         if (decoded) {
           console.log("Decoded token", decoded);
           next();

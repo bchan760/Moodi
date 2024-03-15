@@ -16,7 +16,7 @@ export class UserProfilePanelElement extends LitElement {
         // Redirect to settings path
         window.location.href = "/app/settings";
         break;
-      case "sign-out":
+      case "sign-in":
         // Perform sign out action
         // Add your sign out logic here
         break;
@@ -29,7 +29,7 @@ export class UserProfilePanelElement extends LitElement {
         <!-- Add click event listeners and pass action to the handler function -->
         <li @click="${() => this.handleItemClick('liked-songs')}">Liked Songs</li>
         <li @click="${() => this.handleItemClick('settings')}">Settings</li>
-        <li @click="${() => this.handleItemClick('sign-out')}">Sign out</li>
+        <li @click="${() => this.handleItemClick('sign-in')}">Sign in</li>
       </ul>
     `;
   }

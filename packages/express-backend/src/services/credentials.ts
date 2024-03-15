@@ -1,5 +1,5 @@
 import bcrypt from "bcryptjs";
-import { credentialModel } from "../mongo/credential";
+import credentialModel from "../mongo/credential";
 import { Credential } from "ts-models";
 
 export function verify(
