@@ -1,6 +1,6 @@
 import { html, LitElement } from "lit";
 import { customElement, property } from "lit/decorators.js";
-import { FormDataRequest } from "../src/rest";
+import { FormDataRequest } from "../rest";
 
 @customElement("profile-edit")
 export class ProfileEditElement extends LitElement {

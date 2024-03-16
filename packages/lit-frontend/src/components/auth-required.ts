@@ -5,7 +5,7 @@ import {
   APIUser,
   AuthenticatedUser,
   FormDataRequest
-} from "../src/rest";
+} from "../rest";
 
 export let authContext = createContext<APIUser>("auth");
 
