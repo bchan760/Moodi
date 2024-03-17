@@ -170,18 +170,28 @@ export class AuthRequiredElement extends LitElement {
     const data = new FormData(form);
     const request = new FormDataRequest(data);
 
+    console.log("this is the request content: ", request);
+    // console.log("url being posted", res.url);
     request
       .base()
       .post("/signup")
       .then((res) => {
-        if (res.status === 200) {
+        if (res.status === 201) {
+          console.log("Registered");
+          this.registerStatus = res.status
           return res.json();
         } else {
+          console.log("Printing out res info", res.status, res.body);
+          console.log("Failed to register: ", res.json());
           this.registerStatus = res.status;
+          // throw new Error(`Registration failed with status ${res.status}`);
         }
       })
       .then((json) => {
         console.log("Registration:", json);
+      })
+      .catch((error) => {
+        console.error("Registration error:", error);
       });
   }
 

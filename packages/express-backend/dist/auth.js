@@ -40,7 +40,7 @@ function generateAccessToken(username) {
   return new Promise((resolve, reject) => {
     import_jsonwebtoken.default.sign(
       { username },
-      process.env.TOKEN_SECRET,
+      process.env.TOKEN_SECRET || "",
       { expiresIn: "1d" },
       (error, token) => {
         if (error)
@@ -53,10 +53,13 @@ function generateAccessToken(username) {
 }
 function registerUser(req, res) {
   const { username, pwd } = req.body;
+  console.log("Registering user", username);
+  console.log("associated password", pwd);
   if (!username || !pwd) {
     res.status(400).send("Bad request: Invalid input data.");
   } else {
     import_credentials.default.create(username, pwd).then((creds) => generateAccessToken(creds.username)).then((token) => {
+      console.log("User registered. Session info:", req.session);
       res.status(201).send({ token });
     });
   }
@@ -77,7 +80,7 @@ function authenticateUser(req, res, next) {
   } else {
     import_jsonwebtoken.default.verify(
       token,
-      process.env.TOKEN_SECRET,
+      process.env.TOKEN_SECRET || "",
       (error, decoded) => {
         if (decoded) {
           console.log("Decoded token", decoded);

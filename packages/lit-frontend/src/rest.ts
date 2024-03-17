@@ -1,10 +1,10 @@
-const SERVER_ROOT = window.location.origin;
+const SERVER_ROOT = "http://localhost:3000";
 const API_PATH = "/api";
 const TOKEN_KEY = "JWT_AUTH_TOKEN";
 
 export class APIUser {
   authenticated = false;
-  username = "fellow_traveler";
+  username = "temp_user";
   signOut = () => {};
 
   static _theUser = new APIUser();
@@ -93,6 +93,7 @@ export class JSONRequest {
   }
 
   post(endpoint: string) {
+    console.log("posting to: ",this._url(endpoint));
     return fetch(this._url(endpoint), {
       method: "POST",
       headers: this._headers(),
@@ -128,6 +129,7 @@ export class JSONRequest {
   }
 
   _url(path: string) {
+    // return ${SERVER_ROOT}${this._base}${path};
     return `${SERVER_ROOT}${this._base}${path}`;
   }
 }

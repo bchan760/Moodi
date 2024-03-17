@@ -38,22 +38,11 @@ export interface ProfileSaved extends MsgType<"ProfileSaved"> {
   profile: Profile;
 }
 
-export interface DestinationSaved
-  extends MsgType<"DestinationSaved"> {
-  tourId: string;
-  destId: number;
-  destination: Destination;
-}
 
-export interface RouteRequested
-  extends MsgType<"RouteRequested"> {
-  points: Point[];
-}
 
 export type Message =
   | ProfileSelected
   | ProfileSaved
-  | RouteRequested
   | UserLoggedIn;
 
 export class Main

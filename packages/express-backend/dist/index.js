@@ -21,34 +21,53 @@ var __toESM = (mod, isNodeMode, target) => (target = mod != null ? __create(__ge
   isNodeMode || !mod || !mod.__esModule ? __defProp(target, "default", { value: mod, enumerable: true }) : target,
   mod
 ));
-var import_profiles = __toESM(require("./profiles"));
 var import_express = __toESM(require("express"));
-var import_cors = __toESM(require("cors"));
+var path = __toESM(require("path"));
+var import_promises = __toESM(require("node:fs/promises"));
 var import_mongoConnect = require("./mongoConnect");
+var import_auth = require("./auth");
+var import_api = __toESM(require("./routes/api"));
+var import_websockets = __toESM(require("./websockets"));
+var import_cors = __toESM(require("cors"));
+(0, import_mongoConnect.connect)("cluster0");
 const app = (0, import_express.default)();
 const port = process.env.PORT || 3e3;
+const frontend = "lit-frontend";
+let cwd = process.cwd();
+let dist;
+let indexHtml;
+try {
+  indexHtml = require.resolve(frontend);
+  dist = path.dirname(indexHtml.toString());
+} catch (error) {
+  console.log(`Could not resolve ${frontend}:`, error.code);
+  dist = path.resolve(cwd, "..", frontend, "dist");
+  indexHtml = path.resolve(dist, "index.html");
+}
+console.log(`Serving ${frontend} from`, dist);
+if (dist)
+  app.use(import_express.default.static(dist.toString()));
 app.use((0, import_cors.default)());
-app.use(import_express.default.json());
-(0, import_mongoConnect.connect)("cluster0");
+app.use(import_express.default.raw({ type: "image/*", limit: "32Mb" }));
+app.use(import_express.default.json({ limit: "500kb" }));
+app.post("/login", import_auth.loginUser);
+app.post("/signup", import_auth.registerUser);
+app.use("/api", import_api.default);
+app.use("/app", (req, res) => {
+  if (!indexHtml) {
+    res.status(404).send(
+      `Not found; ${frontend} not available, running in ${cwd}`
+    );
+  } else {
+    import_promises.default.readFile(indexHtml, { encoding: "utf8" }).then(
+      (html) => res.send(html)
+    );
+  }
+});
+const server = app.listen(port, () => {
+  console.log(`Server running at http://localhost:${port}`);
+});
 app.get("/hello", (req, res) => {
   res.send("Hello, World");
 });
-app.get("/api/profiles", (req, res) => {
-  import_profiles.default.index().then((profiles2) => res.json(profiles2)).catch((err) => res.status(404).send(err));
-});
-app.get("/api/profiles/:userid", (req, res) => {
-  const { userid } = req.params;
-  import_profiles.default.get(userid).then((profile) => res.json(profile)).catch((err) => res.status(404).end());
-});
-app.post("/api/profiles", (req, res) => {
-  const newProfile = req.body;
-  import_profiles.default.create(newProfile).then((profile) => res.status(201).send(profile)).catch((err) => res.status(500).send(err));
-});
-app.put("/api/profiles/:userid", (req, res) => {
-  const { userid } = req.params;
-  const newProfile = req.body;
-  import_profiles.default.update(userid, newProfile).then((profile) => res.json(profile)).catch((err) => res.status(404).end());
-});
-app.listen(port, () => {
-  console.log(`Server running at http://localhost:${port}`);
-});
+(0, import_websockets.default)(server);

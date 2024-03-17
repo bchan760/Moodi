@@ -22,34 +22,34 @@ __export(profile_exports, {
 });
 module.exports = __toCommonJS(profile_exports);
 var import_mongoose = require("mongoose");
-const profileSchema = new Schema<Profile>(
+const profileSchema = new import_mongoose.Schema(
   {
     userid: {
-        type: String,
-        required: true,
-        trim: true
+      type: String,
+      required: true,
+      trim: true
     },
     name: {
-        type: String,
-        required: true,
-        trim: true
+      type: String,
+      required: true,
+      trim: true
     },
     nickname: {
-        type: String,
-        trim: true
+      type: String,
+      trim: true
     },
     liked_songs: {
-        type: [String],
-        default: []
+      type: [String],
+      default: []
     },
     num_liked_songs: {
-        type: Number,
-        default: 0
+      type: Number,
+      default: 0
     },
     avatar: {
-        data: Buffer,
-        contentType: String
-    },
+      data: Buffer,
+      contentType: String
+    }
   },
   { collection: "user_profiles" }
 );
