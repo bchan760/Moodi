@@ -1,7 +1,7 @@
 import { css, html, LitElement } from "lit";
 import { customElement, property, state } from "lit/decorators.js";
-import { Profile } from "./models/profile";
-import { serverPath } from "./rest";
+import { Profile } from "../models/profile";
+import { JSONRequest } from "../rest";
 
 @customElement("user-profile")
 export class UserProfileElement extends LitElement {
@@ -51,16 +51,28 @@ export class UserProfileElement extends LitElement {
     // static styles = css`...`;
 
     _fetchData(path: string) {
-        fetch(serverPath(path))
-        .then((response) => {
+        const jsonRequest = new JSONRequest(undefined);
+        const url = jsonRequest._url(path);
+        fetch(url)
+          .then((response) => {
             if (response.status === 200) {
-            return response.json();
+              return response.json();
             }
             return null;
-        })
-        .then((json: unknown) => {
-            if (json) this.profile = json as Profile;
-        })
+          })
+        //   .then((json: unknown) => {
+        //     if (json) this.profile = json as Profile;
+        //   });
+        // fetch(serverPath(path))
+        // .then((response) => {
+        //     if (response.status === 200) {
+        //     return response.json();
+        //     }
+        //     return null;
+        // })
+        // .then((json: unknown) => {
+        //     if (json) this.profile = json as Profile;
+        // })
     }
 
     connectedCallback() {
@@ -162,20 +174,37 @@ export class UserProfileEditElement extends UserProfileElement {
   }
 
   _putData(json: Profile) {
-    fetch(serverPath(this.path), {
+    const jsonRequest = new JSONRequest(undefined);
+    const url = jsonRequest._url(this.path);
+    fetch(url, {
       method: "PUT",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(json)
     })
-      .then((response) => {
-        if (response.status === 200) return response.json();
-        else return null;
-      })
-      .then((json: unknown) => {
-        if (json) this.profile = json as Profile;
-      })
-      .catch((err) =>
-        console.log("Failed to PUT form data", err)
-      );
+    .then((response) => {
+      if (response.status === 200) return response.json();
+      else return null;
+    })
+    .then((json: unknown) => {
+      if (json) this.profile = json as Profile;
+    })
+    .catch((err) =>
+      console.log("Failed to PUT form data", err)
+    );
+  //   fetch(serverPath(this.path), {
+  //     method: "PUT",
+  //     headers: { "Content-Type": "application/json" },
+  //     body: JSON.stringify(json)
+  //   })
+  //     .then((response) => {
+  //       if (response.status === 200) return response.json();
+  //       else return null;
+  //     })
+  //     .then((json: unknown) => {
+  //       if (json) this.profile = json as Profile;
+  //     })
+  //     .catch((err) =>
+  //       console.log("Failed to PUT form data", err)
+  //     );
   }
 }
