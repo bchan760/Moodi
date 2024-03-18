@@ -76,6 +76,7 @@ export class UserProfileElement extends LitElement {
     dt, dd {
       display: inline-block;
       margin: 0;
+      padding: 2px;
     }
   `;
   // _fetchData(path: string) {

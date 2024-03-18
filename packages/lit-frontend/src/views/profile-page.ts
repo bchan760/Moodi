@@ -7,6 +7,7 @@ import * as App from "../app";
 import "../components/user-profile";
 import "../components/profile-edit";
 import "/src/styles/page.css";
+import "../components/title-comp";
 
 type ProfileLocation = Location & {
   params: { userid: string };
@@ -68,13 +69,16 @@ export class ProfilePageElement extends App.View {
     }
     super.attributeChangedCallback(name, oldValue, newValue);
   }
+
   toggleEdit() {
     const url = new URL(document.location.toString());
     const params = new URLSearchParams(url.search);
-    params.set("edit", "true"); // Add the edit query parameter
+    params.set("edit", "true");
     url.search = params.toString();
     window.history.replaceState({}, '', url.toString()); // Update the URL without reloading the page
+    this.requestUpdate(); // Trigger a re-render to reflect the change
   }
+
   render() {
     return html`
       <main class="page">
