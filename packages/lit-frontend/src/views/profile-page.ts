@@ -1,7 +1,11 @@
-import { css, html, unsafeCSS } from "lit";
+import { css, html } from "lit";
 import { customElement, property } from "lit/decorators.js";
+import { consume } from "@lit/context";
+import { authContext } from "../components/auth-required";
+import { APIUser, APIRequest } from "../rest";
 import * as App from "../app";
 import "../components/user-profile";
+import "../components/profile-edit";
 import "/src/styles/page.css";
 
 type ProfileLocation = Location & {
@@ -10,6 +14,13 @@ type ProfileLocation = Location & {
 
 @customElement("profile-page")
 export class ProfilePageElement extends App.View {
+
+  
+  @consume({ context: authContext, subscribe: true })
+  @property({ attribute: false })
+  user = new APIUser();
+
+
   @property({ attribute: false })
   location?: ProfileLocation;
 
@@ -33,6 +44,12 @@ export class ProfilePageElement extends App.View {
     return this.getFromModel("profile");
   }
 
+  connectedCallback() {
+    super.connectedCallback();
+    console.log("This is the user", this.user);
+    // this.dispatchMessage({ type: "ProfilePageConnected" });
+  }
+
   attributeChangedCallback(
     name: string,
     oldValue: string,
@@ -51,28 +68,49 @@ export class ProfilePageElement extends App.View {
     }
     super.attributeChangedCallback(name, oldValue, newValue);
   }
-
+  toggleEdit() {
+    const url = new URL(document.location.toString());
+    const params = new URLSearchParams(url.search);
+    params.set("edit", "true"); // Add the edit query parameter
+    url.search = params.toString();
+    window.history.replaceState({}, '', url.toString()); // Update the URL without reloading the page
+  }
   render() {
     return html`
       <main class="page">
-        ${this.edit
-          ? html`
-              <user-profile-edit .using=${this.profile}>
-              </user-profile-edit>
-            `
-          : html`
-              <user-profile .using=${this.profile}>
-              </user-profile>
-            `}
+        <div class="center-box">
+          ${this.edit
+            ? html`
+                <profile-edit .path=${this.location?.pathname}>
+                </profile-edit>
+              `
+            : html`
+                <user-profile .user=${this.user.username}>
+                </user-profile>
+                <button @click=${this.toggleEdit}>Edit Profile</button>
+              `}
+        </div>
       </main>
     `;
   }
 
-  static styles = [
-    css`
-      :host {
-        display: contents;
-      }
-    `
-  ];
+  static styles = css`
+    .page {
+      position: relative; /* Set position to relative */
+      height: 100vh; /* Set height to full viewport height */
+    }
+
+    .center-box {
+      position: absolute; /* Set position to absolute */
+      top: 50%; /* Move the box 50% from the top */
+      left: 50%; /* Move the box 50% from the left */
+      transform: translate(-50%, -100%); /* Center the box */
+      border: 2px solid #000; /* Add border */
+      padding: 20px; /* Add padding */
+      border-radius: 10px; /* Add border radius */
+      max-width: 80%; /* Set maximum width */
+      max-height: 80%; /* Set maximum height */
+      overflow: auto; /* Add overflow scrolling if necessary */
+    }
+  `;
 }

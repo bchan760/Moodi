@@ -4,17 +4,18 @@ import { customElement, property } from "lit/decorators.js";
 @customElement("user-panel")
 export class UserProfilePanelElement extends LitElement {
   @property({ type: String }) textColor = "#121212"; // Default text color
+  @property({ type: String}) userid = ""; // User ID
 
   // Function to handle click on list items
   handleItemClick(action: string) {
     switch (action) {
       case "liked-songs":
         // Redirect to liked songs path
-        window.location.href = "/app/liked-songs";
+        window.location.href = "/liked-songs";
         break;
       case "settings":
         // Redirect to settings path
-        window.location.href = "/app/settings";
+        window.location.href = `/app/profile/${this.userid}`;
         break;
       case "sign-out":
         // Perform sign out action

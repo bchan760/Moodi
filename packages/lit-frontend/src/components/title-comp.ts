@@ -13,9 +13,9 @@ export class TitleComponent extends LitElement {
                     </svg>
                 </h1>
                 <nav class="navbar">
-                    <a href="about.html">About Moodi</a>
-                    <a href="community.html">Community Suggestions</a>
-                    <a href="suggest.html">Random Song</a>
+                    <a href="/about">About Moodi</a>
+                    <a href="/community">Community Suggestions</a>
+                    <a href="/suggest">Random</a>
                 </nav>
             </div>
         `;
@@ -67,6 +67,6 @@ export class TitleComponent extends LitElement {
     `;
 
     redirectToIndex() {
-        window.location.href = "index.html";
+        window.location.href = "/moodi-app/";
     }
 }

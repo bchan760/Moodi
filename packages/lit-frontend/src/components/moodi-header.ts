@@ -64,13 +64,6 @@ export class MoodiHeaderElement extends LitElement {
         display: flex;
         align-items: center;
       }
-      h1 {
-        font-size: var(--size-type-xxlarge);
-        font-style: oblique;
-        font-weight: var(--font-weight-bold);
-        font-family: var(--font-family-display);
-        line-height: var(--font-line-height-display);
-      }
       .icon {
         width: 96px;
         height: 96px;

@@ -86,6 +86,7 @@ export class JSONRequest {
   }
 
   get(endpoint: string): Promise<Response> {
+    console.log("getting from: ",this._url(endpoint));
     return fetch(this._url(endpoint), {
       headers: this._headers(),
       body: this.json && JSON.stringify(this.json)

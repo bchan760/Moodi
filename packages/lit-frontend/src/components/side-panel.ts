@@ -1,6 +1,5 @@
 import { css, html, LitElement } from "lit";
 import { customElement, property } from "lit/decorators.js";
-import { ToggleSwitchElement } from "./toggle-switch";
 import "../styles/page.css";
 
 @customElement("side-panel")
@@ -30,7 +29,7 @@ export class UserPanelElement extends LitElement {
     return html`
       <ul>
         <li>
-          <slot name="about">About Moodi</slot>
+          <slot name="random">Random Song</slot>
         </li>
         <li class="${this.selectedMenuItem === 'dark-mode' ? 'selected' : ''}">
           Dark Mode
@@ -53,7 +52,7 @@ export class UserPanelElement extends LitElement {
       background-color: #ffd700;
       border-radius: 10px;
       box-shadow: 8px 0px 8px rgba(0, 0, 0, 0.2); /* Add a raised effect to the right border */
-      width: 15%;
+      width: 10%;
       height: 100%;
     }
     * {
@@ -88,22 +87,20 @@ export class UserPanelElement extends LitElement {
     li:last-child {
       border-top-style: solid;
     }
-    img {
-      display: inline;
-      width: 50px;
-      height: 50px;
-      object-fit: cover;
-      border-radius: 50%;
-      margin-right: 10px; /* spacing between image and text */
+    button {
+      /* Your existing styles */
+      padding: 0.5em 0.5em;
+      font-size: 1em; /* Example font size */
+      border: 1px solid #ccc; /* Example border */
+      border-radius: 10px; /* Example border radius */
+      background-color: #f0f0f0; /* Example background color */
+      color: #333; /* Example text color */
+      cursor: pointer; /* Example cursor */
+      transition: background-color 0.3s ease; /* Example transition */
     }
-    h1 {
-      font-size: var(--size-type-mlarge);
-      line-height: var(--font-line-height-display);
-      white-space: normal;
-      text-align: left;
-    }
-    .selected {
-      border: 2px solid red; /* Define your highlighted border style */
+    
+    button:hover {
+      background-color: #ddd; /* Example hover background color */
     }
   `;
 
