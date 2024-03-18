@@ -85,7 +85,7 @@ export class ProfilePageElement extends App.View {
                 </profile-edit>
               `
             : html`
-                <user-profile .user=${this.user.username}>
+                <user-profile .user=${this.user}>
                 </user-profile>
                 <button @click=${this.toggleEdit}>Edit Profile</button>
               `}

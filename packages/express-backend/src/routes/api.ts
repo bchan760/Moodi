@@ -7,6 +7,6 @@ const router = express.Router();
 // all routes under this router require authentication
 router.use(authenticateUser);
 
-router.use("/profile", profileRouter);
+router.use("/profiles", profileRouter);
 
 export default router;

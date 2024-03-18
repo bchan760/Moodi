@@ -36,5 +36,5 @@ var import_auth = require("../auth");
 var import_profiles = __toESM(require("./profiles"));
 const router = import_express.default.Router();
 router.use(import_auth.authenticateUser);
-router.use("/profile", import_profiles.default);
+router.use("/profiles", import_profiles.default);
 var api_default = router;
