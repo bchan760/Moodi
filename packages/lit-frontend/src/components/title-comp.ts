@@ -24,7 +24,6 @@ export class TitleComponent extends LitElement {
     static styles = css`
         :host {
             display: fixed;
-            align-items: center;
             justify-content: center; /* Center horizontally */
             width: 100%;
             background-color: rgb(255, 215, 0);
@@ -36,7 +35,7 @@ export class TitleComponent extends LitElement {
             flex-direction: column;
             align-items: center;
             padding: 10px 0;
-            transform: translate(3%); /* Center it precisely */
+            transform: translate(5%); /* Center it precisely */
             width: 100%;
             height: 100%;
         }

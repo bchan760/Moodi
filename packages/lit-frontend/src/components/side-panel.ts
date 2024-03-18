@@ -1,7 +1,7 @@
 import { css, html, LitElement } from "lit";
 import { customElement, property } from "lit/decorators.js";
 import { ToggleSwitchElement } from "./toggle-switch";
-import { PresetButtonsElement } from "./preset-buttons";
+import "../styles/page.css";
 
 @customElement("side-panel")
 export class UserPanelElement extends LitElement {
@@ -33,10 +33,11 @@ export class UserPanelElement extends LitElement {
           <slot name="about">About Moodi</slot>
         </li>
         <li class="${this.selectedMenuItem === 'dark-mode' ? 'selected' : ''}">
-          <toggle-switch @change=${this._toggleDarkMode}>Dark Mode</toggle-switch>
+          Dark Mode
+          <button @click=${this._toggleDarkMode}>Toggle</button>
         </li>
         <slot></slot>
-        <li>
+        <li @click=${this._handleSignOut.bind(this)}>
           <slot name="logout">Sign out</slot>
         </li>
       </ul>
@@ -46,6 +47,7 @@ export class UserPanelElement extends LitElement {
     :host {
       display: inline-block;
       position: fixed;
+      margin-top: -15px;
       padding-left: 20px;
       z-index: 999; /* Ensure it's above other content */
       background-color: #ffd700;
@@ -55,7 +57,6 @@ export class UserPanelElement extends LitElement {
       height: 100%;
     }
     * {
-      margin: 0;
       box-sizing: border-box;
     }
     ul {
@@ -106,32 +107,12 @@ export class UserPanelElement extends LitElement {
     }
   `;
 
-  _toggleDarkMode(ev: InputEvent) {
-    const target = ev.target as ToggleSwitchElement;
-    const body = document.body;
-
-    console.log("Toggling Dark mode", ev);
-
-    if (target?.on) {
-      body.classList.add("dark-mode");
-      localStorage.setItem("darkModeEnabled", "true"); // Store dark mode preference
-    } else {
-      body.classList.remove("dark-mode");
-      localStorage.setItem("darkModeEnabled", "false"); // Store dark mode preference
-    }
+  _toggleDarkMode() {
+    const darkModeEnabled = document.body.classList.toggle("dark-mode");
+    localStorage.setItem("darkModeEnabled", darkModeEnabled ? "true" : "false");
   }
 
-  _selectFontSize(ev: InputEvent) {
-    const target = ev.target as PresetButtonsElement;
-    const body = document.body;
-
-    console.log("Selecting Font Size", ev);
-
-    if (target) {
-      const fontSize = target.value
-        ? target.value.toString() + "px"
-        : "initial";
-      body.style.fontSize = fontSize;
-    }
+  _handleSignOut() {
+    this.dispatchEvent(new CustomEvent("sign-out"));
   }
 }

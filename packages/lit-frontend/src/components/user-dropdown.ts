@@ -1,7 +1,7 @@
 import { LitElement, html, css } from "lit";
 import { customElement, property } from "lit/decorators.js";
 
-@customElement("user-profile-dropdown")
+@customElement("user-dropdown")
 export class UserProfileDropdown extends LitElement {
     @property({ reflect: true, type: Boolean })
     open: boolean = false;
@@ -9,11 +9,14 @@ export class UserProfileDropdown extends LitElement {
     @property({ type: String })
     align: 'left' | 'right' = 'right';
 
+    @property({ type: String }) // Add this property
+    shortname: string = "";
+
     render() {
         return html`
             <div class="dropdown-container">
                 <div class="dropdown-button" @click=${this.toggleDropdown}>
-                    <slot name="username">Hello User</slot>
+                    <slot name="username">Hello ${this.shortname}</slot>
                     <img class="prof-pic" src="../assets/avatars/white_default_picon.jpg" alt="Profile Picture">
                 </div>
                 <div class="dropdown-menu" ?open=${this.open}>
@@ -26,7 +29,17 @@ export class UserProfileDropdown extends LitElement {
     static styles = css`
         :host {
             z-index: 999;
-            height: 100%;
+            height: 163px;
+            background-color: #ffd700; /* cahnge color to debug */
+            display: inline-block;
+        }
+        
+        .dropdown-container {
+            display: flex;
+            align-items: center;
+            position: relative;
+            height: 163px;
+            padding-right: 15px;
         }
 
         .prof-pic {
@@ -36,13 +49,6 @@ export class UserProfileDropdown extends LitElement {
             object-fit: cover;
         }
 
-        .dropdown-container {
-            display: flex;
-            align-items: center;
-            height: 100%;
-            position: relative;
-            border-left: 1px solid #000;
-        }
 
         .dropdown-button {
             display: flex;

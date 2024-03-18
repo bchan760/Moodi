@@ -8,8 +8,12 @@ import { consume } from "@lit/context";
 import { APIUser, APIRequest } from "../rest";
 import { authContext } from "./auth-required";
 import { Profile } from "ts-models";
+import "/src/styles/page.css";
 import "./drop-down";
 import "./user-panel";
+import "./side-panel";
+import "./title-comp";
+import "./user-dropdown";
 
 @customElement("moodi-header")
 export class MoodiHeaderElement extends LitElement {
@@ -30,26 +34,25 @@ export class MoodiHeaderElement extends LitElement {
     const authenticated = this.user.authenticated;
     const welcome = authenticated
       ? html`
-          <span>Hello,</span>
-          <drop-down align="right">
+          <user-dropdown align="right" shortname=${shortname}>
             ${shortname}
-            <user-panel
-              slot="menu"
-              avatar=${avatar}
-              userid=${userid}>
+            <user-panel slot="menu" avatar=${avatar} userid=${userid} @sign-out=${this._signOut}>
               <span slot="name">${name}</span>
-              <button slot="logout" @click=${this._signOut}>
-                Log out...
-              </button>
             </user-panel>
-          </drop-down>
+          </user-dropdown >
         `
       : "Not logged in";
 
-    return html`
+      return html`
       <header>
-        <h1>Welcome to Moodi!</h1>
-        <p>${welcome}</p>
+        <title-comp></title-comp>
+        <drop-down align="left">
+          <svg class="icon" slot="icon">
+            <use href="/icons/hamburger.svg#icon-hamburger" />
+          </svg>
+          <side-panel slot="menu" @sign-out=${this._signOut}></side-panel>
+        </drop-down>
+        ${welcome}
       </header>
     `;
   }
@@ -59,23 +62,7 @@ export class MoodiHeaderElement extends LitElement {
       header {
         grid-area: header;
         display: flex;
-        flex-wrap: wrap;
-        align-items: baseline;
-        justify-content: space-between;
-        padding: var(--size-spacing-medium);
-        gap: 0 var(--size-spacing-xlarge);
-        background-color: var(--color-background-header);
-        color: var(--color-text-inverted);
-      }
-      header * + :last-child {
-        flex-grow: 1;
-        text-align: right;
-      }
-      header h1 {
-        white-space: nowrap;
-      }
-      header a[href] {
-        color: var(--color-link-inverted);
+        align-items: center;
       }
       h1 {
         font-size: var(--size-type-xxlarge);
@@ -83,6 +70,12 @@ export class MoodiHeaderElement extends LitElement {
         font-weight: var(--font-weight-bold);
         font-family: var(--font-family-display);
         line-height: var(--font-line-height-display);
+      }
+      .icon {
+        width: 96px;
+        height: 96px;
+        fill: #FF9D72;
+        margin: 36px;
       }
       [slot="logout"] a {
         color: var(--color-accent);
