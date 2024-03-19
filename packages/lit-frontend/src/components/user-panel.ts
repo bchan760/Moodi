@@ -11,7 +11,7 @@ export class UserProfilePanelElement extends LitElement {
     switch (action) {
       case "liked-songs":
         // Redirect to liked songs path
-        window.location.href = "/liked-songs";
+        window.location.href = "/app/profile/liked-songs";
         break;
       case "settings":
         // Redirect to settings path

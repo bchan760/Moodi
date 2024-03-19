@@ -4,7 +4,6 @@ import { consume } from "@lit/context";
 import { APIUser, APIRequest } from "../rest";
 import { authContext } from "../components/auth-required";
 import { Profile } from "../models/profile";
-import { JSONRequest } from "../rest";
 
 @customElement("user-profile")
 export class UserProfileElement extends LitElement {
@@ -37,7 +36,7 @@ export class UserProfileElement extends LitElement {
     return html`
       <section>
         ${this._renderAvatar()}
-        <h1>${name}</h1>
+        <h1>Hi ${name}</h1>
         <dl>
           <div class="row">
             <dt>Username:</dt>

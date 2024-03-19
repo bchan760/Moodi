@@ -19,8 +19,8 @@ function generateAccessToken(username: string) {
 export function registerUser(req: any, res: any) {
   const { username, pwd } = req.body; // from form
 
-  console.log("Registering user", username);
-  console.log("associated password", pwd);
+  // console.log("Registering user", username);
+  // console.log("associated password", pwd);
   if (!username || !pwd) {
     res.status(400).send("Bad request: Invalid input data.");
   } else {

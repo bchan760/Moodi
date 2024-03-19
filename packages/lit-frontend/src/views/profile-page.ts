@@ -105,16 +105,26 @@ export class ProfilePageElement extends App.View {
     }
 
     .center-box {
-      position: absolute; /* Set position to absolute */
-      top: 50%; /* Move the box 50% from the top */
-      left: 50%; /* Move the box 50% from the left */
-      transform: translate(-50%, -100%); /* Center the box */
-      border: 2px solid #000; /* Add border */
-      padding: 20px; /* Add padding */
-      border-radius: 10px; /* Add border radius */
-      max-width: 80%; /* Set maximum width */
-      max-height: 80%; /* Set maximum height */
-      overflow: auto; /* Add overflow scrolling if necessary */
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      border: 2px solid #000;
+      padding: 20px;
+      border-radius: 10px;
+      max-width: 80%;
+      max-height: 80%;
+      overflow: auto;
+    }
+
+    .overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(0, 0, 0, 0.5);
+      z-index: 1;
     }
   `;
 }

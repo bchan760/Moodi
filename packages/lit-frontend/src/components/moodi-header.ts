@@ -14,6 +14,7 @@ import "./user-panel";
 import "./side-panel";
 import "./title-comp";
 import "./user-dropdown";
+import "./moodi-body";
 
 @customElement("moodi-header")
 export class MoodiHeaderElement extends LitElement {
@@ -54,6 +55,7 @@ export class MoodiHeaderElement extends LitElement {
         </drop-down>
         ${welcome}
       </header>
+      <moodi-body></moodi-body>
     `;
   }
 

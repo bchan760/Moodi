@@ -53,8 +53,6 @@ function generateAccessToken(username) {
 }
 function registerUser(req, res) {
   const { username, pwd } = req.body;
-  console.log("Registering user", username);
-  console.log("associated password", pwd);
   if (!username || !pwd) {
     res.status(400).send("Bad request: Invalid input data.");
   } else {
