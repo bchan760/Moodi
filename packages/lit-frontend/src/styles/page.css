@@ -1,0 +1,132 @@
+:root {
+    --color-background-page-light: #FCFBF4;
+    --color-background-page-dark: #121212;
+    --color-text-light: #121212;
+    --color-text-dark: #ffffff;
+    --color-line: #121212;
+}
+
+header {
+    display: flex;
+    align-items: center;
+    background-color: #ffd700;
+    padding: 0 20px;
+    position: relative;
+}
+
+body {
+    font-family: 'Inter', 'Noto Sans';
+    line-height: 1.6;
+    background-color: var(--color-background-page-light);
+    color: var(--color-text-light);
+    margin: 0;
+}
+
+body.dark-mode {
+    background-color: var(--color-background-page-dark);
+    color: var(--color-text-dark);
+}
+
+body.light-mode {
+    background-color: var(--color-background-page-light);
+    color: var(--color-text-light);
+}
+
+body.light-mode ul li a {
+    color: var(--color-text-light); /* Set link text color to light mode */
+}
+
+body.dark-mode ul li a {
+    color: var(--color-text-dark); /* Set link text color to dark mode */
+}
+
+section {
+    padding: 20px;
+}
+
+ul {
+    display: flex; /*suggests that the list items are displayed in a row */
+    justify-content: center; /* Center items horizontally */
+    text-align: center;
+}
+
+li {
+    display: inline-block;
+    margin-right: 100px; /* Add space between the list items */
+    font-size: 18px;
+    color: #fff; /* White text */
+    list-style: none; /* Remove default list styling */
+}
+
+a {
+    color: #fff; /* Set link text color to white */
+    text-decoration: none; /* Remove default underline styling */
+}
+
+form {
+    text-align: center;
+    font-size: 30%;
+    width: 100%;
+    padding: 20px;
+    color: #fff; /* White text */
+}
+
+h2 {
+    text-align: center; /* Center the text */
+    font-size: 24px;
+    margin-bottom: 5px;
+}
+
+span {
+    display: block;
+    text-align: center;
+    margin-top: 10px;
+}
+
+span.padding{
+    padding-top: 5px;
+}
+
+svg.icon {
+    /* display: inline; */
+    height: 5em;
+    width: 5em;
+    /* vertical-align: top; */
+    fill: #FF9D72;
+    margin-left: 40px;
+    margin-top: 40px;
+}
+
+#userInput {
+    width: 80%;
+    padding: 10px;
+    margin: 10px 0;
+    vertical-align: top; 
+}
+
+#submit {
+    padding: 9px 20px; 
+    margin: 10px 0;
+    background-color: #FF9D72; 
+    color: white; 
+    border: none; 
+    cursor: pointer;
+    vertical-align: top; 
+    font-size: 18px;
+}
+
+#contact {
+    position: fixed;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    padding: 10px; 
+    color: var(--color-text-light);
+    cursor: pointer; 
+    text-align: center;
+}
+
+body.dark-mode #contact {
+    color: var(--color-text-dark); /* Adjust for dark mode */
+}
+
