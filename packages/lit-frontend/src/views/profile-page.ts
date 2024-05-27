@@ -7,7 +7,7 @@ import * as App from "../app";
 import "../components/user-profile";
 import "../components/profile-edit";
 import "/src/styles/page.css";
-import "../components/title-comp";
+import "../components/title/title-wrapper";
 
 type ProfileLocation = Location & {
   params: { userid: string };

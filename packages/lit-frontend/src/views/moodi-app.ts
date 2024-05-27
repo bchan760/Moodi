@@ -15,12 +15,15 @@ export class MoodiAppElement extends App.Main {
     super(update);
   }
 
+  // <auth-required>
+  //       <moodi-header></moodi-header>
+  //       <vaadin-router .routes=${routes}> </vaadin-router>
+  // </auth-required>
+
   render() {
     return html`
-      <auth-required>
         <moodi-header></moodi-header>
         <vaadin-router .routes=${routes}> </vaadin-router>
-      </auth-required>
     `;
   }
 }

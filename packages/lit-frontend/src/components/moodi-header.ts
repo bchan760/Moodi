@@ -8,13 +8,13 @@ import { consume } from "@lit/context";
 import { APIUser, APIRequest } from "../rest";
 import { authContext } from "./auth-required";
 import { Profile } from "ts-models";
-import "/src/styles/page.css";
-import "./drop-down";
-import "./user-panel";
-import "./side-panel";
-import "./title-comp";
-import "./user-dropdown";
-import "./moodi-body";
+// import "/src/styles/page.css";
+// import "./drop-down";
+// import "./user-panel";
+// import "./side-panel";
+// import "./title-comp";
+// import "./user-dropdown";
+// import "./moodi-body";
 
 @customElement("moodi-header")
 export class MoodiHeaderElement extends LitElement {
@@ -26,59 +26,53 @@ export class MoodiHeaderElement extends LitElement {
   user = new APIUser();
 
   render() {
-    const { avatar, name, nickname, userid } =
-      this.profile || {};
+    const { avatar, name, nickname, userid } = this.profile || {};
+
     const shortname =
-      nickname ||
-      (name && name.split(" ")[0]) ||
-      this.user.username;
-    const authenticated = this.user.authenticated;
-    const welcome = authenticated
-      ? html`
-          <user-dropdown align="right" shortname=${shortname}>
-            ${shortname}
-            <user-panel slot="menu" avatar=${avatar} userid=${userid} @sign-out=${this._signOut}>
-              <span slot="name">${name}</span>
-            </user-panel>
-          </user-dropdown >
-        `
-      : "Not logged in";
+      nickname || (name && name.split(" ")[0]) || this.user.username;
+
+    // const authenticated = this.user.authenticated;
+    // const welcome = authenticated
+    //   ? html`
+    //       <user-dropdown align="right" shortname=${shortname}>
+    //         ${shortname}
+    //         <user-panel slot="menu" avatar=${avatar} userid=${userid} @sign-out=${this._signOut}>
+    //           <span slot="name">${name}</span>
+    //         </user-panel>
+    //       </user-dropdown>
+    //     `
+    //     : html`
+    //     <auth-comp></auth-comp>
+    // `;
 
       return html`
-      <header>
-        <title-comp></title-comp>
-        <drop-down align="left">
-          <svg class="icon" slot="icon">
-            <use href="/icons/hamburger.svg#icon-hamburger" />
-          </svg>
-          <side-panel slot="menu" @sign-out=${this._signOut}></side-panel>
-        </drop-down>
-        ${welcome}
-      </header>
-      <moodi-body></moodi-body>
-    `;
+        <header>
+          <title-wrapper></title-wrapper>
+        </header>
+      `;
+      // <moodi-body></moodi-body>
   }
 
-  static styles = [
-    css`
-      header {
-        grid-area: header;
-        display: flex;
-        align-items: center;
-      }
-      .icon {
-        width: 96px;
-        height: 96px;
-        fill: #FF9D72;
-        margin: 36px;
-      }
-      [slot="logout"] a {
-        color: var(--color-accent);
-        cursor: pointer;
-        font-weight: var(--font-weight-bold);
-      }
-    `
-  ];
+  // static styles = [
+  //   css`
+  //     header {
+  //       grid-area: header;
+  //       display: flex;
+  //       align-items: center;
+  //     }
+  //     .icon {
+  //       width: 96px;
+  //       height: 96px;
+  //       fill: #FF9D72;
+  //       margin: 36px;
+  //     }
+  //     [slot="logout"] a {
+  //       color: var(--color-accent);
+  //       cursor: pointer;
+  //       font-weight: var(--font-weight-bold);
+  //     }
+  //   `
+  // ];
 
   updated(changedProperties: Map<string, unknown>) {
     console.log(
