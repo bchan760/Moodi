@@ -16,7 +16,6 @@ header {
 
 body {
     font-family: 'Inter', 'Noto Sans';
-    line-height: 1.6;
     background-color: var(--color-background-page-light);
     color: var(--color-text-light);
     margin: 0;

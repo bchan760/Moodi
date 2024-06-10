@@ -5,18 +5,23 @@ import { customElement } from 'lit/decorators.js';
 export class TitleHeader extends LitElement {
     static styles = css`
         .title-container {
+            display: flex;
+            justify-content: center;
             text-align: center;
         }
         .title {
             display: flex;
             align-items: center;
-            font-size: 2rem;
+            font-size: 1.5rem;
             cursor: pointer;
         }
         .title-icon {
             width: 50px;
             height: 50px;
             cursor: pointer;
+        }
+        .title-text {
+            margin-right: 0.5rem;
         }
     `;
 

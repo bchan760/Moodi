@@ -11,8 +11,10 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "@popperjs/core": "^2.11.8",
     "@rollup/rollup-darwin-arm64": "^4.14.3",
     "@vaadin/router": "^1.7.5",
+    "bootstrap": "^5.3.3",
     "lit": "^3.1.2"
   },
   "devDependencies": {

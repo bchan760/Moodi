@@ -5,16 +5,12 @@ import {
   state
 } from "lit/decorators.js";
 import { consume } from "@lit/context";
-import { APIUser, APIRequest } from "../rest";
-import { authContext } from "./auth-required";
+import { APIUser, APIRequest } from "../../rest";
+import { authContext } from "../auth-required";
 import { Profile } from "ts-models";
-// import "/src/styles/page.css";
-// import "./drop-down";
-// import "./user-panel";
-// import "./side-panel";
-// import "./title-comp";
-// import "./user-dropdown";
-// import "./moodi-body";
+import "bootstrap/dist/js/bootstrap.js";
+import bootstrap from "./node_modules/bootstrap/dist/css/bootstrap.css";
+
 
 @customElement("moodi-header")
 export class MoodiHeaderElement extends LitElement {
@@ -24,6 +20,8 @@ export class MoodiHeaderElement extends LitElement {
   @consume({ context: authContext, subscribe: true })
   @property({ attribute: false })
   user = new APIUser();
+
+  static styles = bootstrap;
 
   render() {
     const { avatar, name, nickname, userid } = this.profile || {};
@@ -46,33 +44,40 @@ export class MoodiHeaderElement extends LitElement {
     // `;
 
       return html`
-        <header>
-          <title-wrapper></title-wrapper>
-        </header>
-      `;
-      // <moodi-body></moodi-body>
-  }
+          <nav class="navbar navbar-expand-lg navbar-light bg-light px-0 py-3">
+          <div class="container-xl">
+            <!-- Logo -->
+            <a class="navbar-brand" href="#">
+              <img src="https://preview.webpixels.io/web/img/logos/clever-primary.svg" class="h-8" alt="...">
+            </a>
+            <!-- Navbar toggle -->
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+              <span class="navbar-toggler-icon"></span>
+            </button>
 
-  // static styles = [
-  //   css`
-  //     header {
-  //       grid-area: header;
-  //       display: flex;
-  //       align-items: center;
-  //     }
-  //     .icon {
-  //       width: 96px;
-  //       height: 96px;
-  //       fill: #FF9D72;
-  //       margin: 36px;
-  //     }
-  //     [slot="logout"] a {
-  //       color: var(--color-accent);
-  //       cursor: pointer;
-  //       font-weight: var(--font-weight-bold);
-  //     }
-  //   `
-  // ];
+            <!-- Collapse -->
+            <div class="collapse navbar-collapse" id="navbarCollapse">
+              <!-- Nav -->
+              <div class="navbar-nav mx-lg-auto">
+                <a class="nav-item nav-link active" href="#" aria-current="page">Home</a>
+                <a class="nav-item nav-link" href="#">Product</a>
+                <a class="nav-item nav-link" href="#">Features</a>
+              </div>
+              <!-- Right navigation -->
+              <div class="navbar-nav ms-lg-4">
+                <a class="nav-item nav-link" href="#">Sign in</a>
+              </div>
+              <!-- Action -->
+              <div class="d-flex align-items-lg-center mt-3 mt-lg-0">
+                <a href="#" class="btn btn-sm btn-primary w-full w-lg-auto">
+                  Register
+                </a>
+              </div>
+            </div>
+          </div>
+        </nav>
+      `;
+  }
 
   updated(changedProperties: Map<string, unknown>) {
     console.log(

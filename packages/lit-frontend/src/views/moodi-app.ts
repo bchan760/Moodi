@@ -7,7 +7,8 @@ import update from "../update";
 // components
 import "../components/auth-required";
 import "../components/vaadin-router";
-import "../components/moodi-header";
+import "../components/title/moodi-header";
+// import "../components/moodi-body";
 
 @customElement("moodi-app")
 export class MoodiAppElement extends App.Main {
@@ -23,6 +24,7 @@ export class MoodiAppElement extends App.Main {
   render() {
     return html`
         <moodi-header></moodi-header>
+        <moodi-body></moodi-body>
         <vaadin-router .routes=${routes}> </vaadin-router>
     `;
   }
