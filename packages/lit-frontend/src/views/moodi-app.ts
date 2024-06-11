@@ -9,8 +9,6 @@ import "../components/auth-required";
 import "../components/vaadin-router";
 import "../components/title/moodi-header";
 // import "../components/moodi-body";
-import 'bootstrap/dist/css/bootstrap.css';
-import 'bootstrap/dist/js/bootstrap.bundle.js';
 
 @customElement("moodi-app")
 export class MoodiAppElement extends App.Main {
