@@ -1,26 +1,19 @@
 import { LitElement, html, css, unsafeCSS } from 'lit';
 import { customElement, property, state } from 'lit/decorators.js';
-import { consume } from '@lit/context';
-import { APIUser, APIRequest } from '../../rest';
-import { authContext } from '../auth-required';
-import { Profile } from 'ts-models';
-// import 'bootstrap/dist/js/bootstrap.bundle.min.js';
-
-// Import Bootstrap CSS as a string
-// import bootstrapCss from './node_modules/bootstrap/dist/css/bootstrap.min.css';
+// import { consume } from '@lit/context';
+// import { APIUser, APIRequest } from '../../rest';
+// import { authContext } from '../auth-required';
+// import { Profile } from 'ts-models';
+import 'bootstrap/dist/js/bootstrap.bundle.min.js';
+import 'bootstrap/dist/css/bootstrap.min.css';
+const bootstrapCSS = 'bootstrap/dist/css/bootstrap.min.css';
 
 @customElement('moodi-header')
 export class MoodiHeaderElement extends LitElement {
-  @state() profile?: Profile;
-
-  @consume({ context: authContext, subscribe: true })
-  @property({ attribute: false }) user = new APIUser();
 
   render() {
-    const { avatar, name, nickname, userid } = this.profile || {};
-    const shortname = nickname || (name && name.split(' ')[0]) || this.user.username;
-
     return html`
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css">
       <nav class="navbar navbar-expand-lg navbar-light bg-light px-0 py-3">
         <div class="container-xl">
           <a class="navbar-brand" href="#">
@@ -47,33 +40,5 @@ export class MoodiHeaderElement extends LitElement {
     `;
   }
 
-  updated(changedProperties: Map<string, unknown>) {
-    console.log('Profile Data has been updated', changedProperties);
-    if (changedProperties.has('user')) {
-      console.log('New user', this.user);
-      const { username } = this.user;
-      this._getData(`/profiles/${username}`);
-    }
-    return true;
-  }
-
-  _getData(path: string) {
-    const request = new APIRequest();
-    request.get(path)
-      .then((response: Response) => {
-        if (response.status === 200) {
-          return response.json();
-        }
-        return null;
-      })
-      .then((json: unknown) => {
-        console.log('Profile:', json);
-        this.profile = json as Profile;
-      });
-  }
-
-  _signOut() {
-    console.log('Signout');
-    this.user.signOut();
-  }
+  static styles = unsafeCSS(bootstrapCSS);
 }
