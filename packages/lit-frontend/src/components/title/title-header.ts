@@ -12,7 +12,6 @@ export class TitleHeader extends LitElement {
         .title {
             display: flex;
             align-items: center;
-            font-size: 1.5rem;
             cursor: pointer;
         }
         .title-icon {
