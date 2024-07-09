@@ -20,7 +20,7 @@ export class TitleHeader extends LitElement {
             cursor: pointer;
         }
         .title-text {
-            margin-right: 0.5rem;
+            margin: 1.5rem;
         }
     `;
 
